@@ -86,7 +86,7 @@ class DataProcessor:
 
     @staticmethod
     def fit_transform_data(
-        pipeline: list(any),
+        pipeline: list[any],
         x_train: pd.DataFrame | pd.Series | np.ndarray,
         x_test: pd.DataFrame | pd.Series | np.ndarray,
     ):
