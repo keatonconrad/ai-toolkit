@@ -10,7 +10,6 @@ authors = [
 ]
 description = "A toolkit for AI projects"
 readme = "README.md"
-packages = ["ai_toolkit"]
 license = {file = "LICENSE"}
 requires-python = ">= 3.6"
 keywords = ["ai", "machine learning", "deep learning", "data science"]
