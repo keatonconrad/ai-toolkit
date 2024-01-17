@@ -29,3 +29,25 @@ def set_global_determinism(seed=SEED):
 
     tf.config.threading.set_inter_op_parallelism_threads(1)
     tf.config.threading.set_intra_op_parallelism_threads(1)
+
+
+def setup_for_tpu(
+    tpu: str = "grpc://" + os.environ["COLAB_TPU_ADDR"],
+) -> tf.distribute.Strategy:
+    """
+    Sets up the environment for TPU
+    """
+    try:
+        tpu = tf.distribute.cluster_resolver.TPUClusterResolver(tpu)
+        print("Running on TPU:", tpu.master())
+    except ValueError:
+        tpu = None
+
+    if tpu:
+        tf.config.experimental_connect_to_cluster(tpu)
+        tf.tpu.experimental.initialize_tpu_system(tpu)
+        strategy = tf.distribute.experimental.TPUStrategy(tpu)
+    else:
+        strategy = tf.distribute.get_strategy()
+
+    return strategy

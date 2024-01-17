@@ -9,7 +9,9 @@ class DataProcessor:
         self.binary_classification = binary_classification
 
     @staticmethod
-    def get_highest_correlations(df: pd.DataFrame, threshold=0.9, drop=False):
+    def get_highest_correlations(
+        df: pd.DataFrame, threshold=0.9, drop=False
+    ) -> list[tuple]:
         """
         Returns a list of tuples containing the highest correlations in the dataframe
         @param df: The dataframe to check
@@ -25,7 +27,9 @@ class DataProcessor:
             df.drop(correlations.index, axis=1, inplace=True)
         return correlations
 
-    def format_data(self, df: pd.DataFrame, labels_column: str):
+    def format_data(
+        self, df: pd.DataFrame, labels_column: str
+    ) -> tuple[pd.DataFrame, pd.Series]:
         """
         Formats the data for training
         @param df: The dataframe to format
@@ -46,7 +50,7 @@ class DataProcessor:
         labels: pd.Series,
         model=LogisticRegression(),
         print_features=False,
-    ):
+    ) -> pd.DataFrame:
         """
         Selects the best features from the dataframe using the model
         @param df: The dataframe to select from
@@ -65,7 +69,11 @@ class DataProcessor:
         transformer: any,
         x_train: pd.DataFrame | pd.Series | np.ndarray,
         x_test: pd.DataFrame | pd.Series | np.ndarray,
-    ):
+    ) -> tuple[
+        any,
+        pd.DataFrame | pd.Series | np.ndarray,
+        pd.DataFrame | pd.Series | np.ndarray,
+    ]:
         """
         Fits and transforms the data using the transformer
         @param transformer: The transformer to use
@@ -82,7 +90,10 @@ class DataProcessor:
         pipeline: list[any],
         x_train: pd.DataFrame | pd.Series | np.ndarray,
         x_test: pd.DataFrame | pd.Series | np.ndarray,
-    ):
+    ) -> tuple[
+        pd.DataFrame | pd.Series | np.ndarray,
+        pd.DataFrame | pd.Series | np.ndarray,
+    ]:
         """
         Fits and transforms the data using the pipeline
         @param pipeline: The pipeline to use. A list of sklearn transformers
@@ -100,7 +111,7 @@ class DataProcessor:
         estimator: any,
         training_data: tuple[pd.DataFrame, pd.Series],
         test_data: tuple[pd.DataFrame, pd.Series],
-    ):
+    ) -> float:
         """
         Fits the estimator and returns the score
         @param estimator: The estimator to fit
