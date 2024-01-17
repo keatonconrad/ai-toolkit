@@ -1,14 +1,7 @@
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    import pandas as pd
-from sklearn.preprocessing import StandardScaler, PolynomialFeatures
-from sklearn.decomposition import PCA
-from sklearn.feature_selection import SelectFromModel
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
 import pandas as pd
 import numpy as np
+from sklearn.feature_selection import SelectFromModel
+from sklearn.linear_model import LogisticRegression
 
 
 class DataProcessor:
