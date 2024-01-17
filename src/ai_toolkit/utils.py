@@ -32,11 +32,19 @@ def set_global_determinism(seed=SEED):
 
 
 def setup_for_tpu(
-    tpu: str = "grpc://" + os.environ["COLAB_TPU_ADDR"],
+    tpu: str | None = None,
+    for_colab: bool = False,
 ) -> tf.distribute.Strategy:
     """
     Sets up the environment for TPU
+    @param tpu: The TPU to use
+    @param for_colab: Whether to use the Colab TPU. Overrides the tpu parameter
+    @return: A tf.distribute.Strategy object
     """
+    if for_colab:
+        tpu = "grpc://" + os.environ["COLAB_TPU_ADDR"]
+    else:
+        tpu = tpu
     try:
         tpu = tf.distribute.cluster_resolver.TPUClusterResolver(tpu)
         print("Running on TPU:", tpu.master())
