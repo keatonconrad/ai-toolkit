@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+name = "AI Toolkit"
+version = "0.1.0"
+author = "Keaton Conrad"
+author_email = "keaton.conrad@gmail.com"
+description = "A toolkit for AI projects"
+long_description = "file: README.md"
+long_description_content_type = "text/markdown"
+url = "https://github.com/keatonconrad/ai-toolkit"
+packages = ["ai_toolkit"]
+
+[options]
+install_requires = [
+    "pandas",
+    "comet_ml",
+    "scikit-learn",
+    "tensorflow",
+    "numpy"
+]
