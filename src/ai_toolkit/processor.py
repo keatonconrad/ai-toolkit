@@ -101,7 +101,7 @@ class DataProcessor:
         @param x_test: The test data
         """
         for transformer in pipeline:
-            transformer, x_train, x_test = DataProcessor.pipeline_step(
+            transformer, x_train, x_test = DataProcessor._pipeline_step(
                 transformer, x_train, x_test
             )
         return x_train, x_test
